@@ -16,7 +16,7 @@
                     <li class="text-field">
                         <label for="name-contact-us">
                             <span class="BigLabel">Заголовок:</span>
-                            <br />
+                            <br>
                             <span class="sublabel">Заголовок пункта</span><br />
                         </label>
                         <div class="input-prepend">
@@ -176,5 +176,11 @@
                 obj.newPanel.prev().find('input[type=radio]').attr('checked','checked');
             }
         });
+        $('#accordion input[type=radio]').each(function (ind,it) {
+            if($(this).prop('checked')) {
+                active = ind;
+            }
+        });
+        $('#accordion').accordion('option','active',active);
     })
 </script>
