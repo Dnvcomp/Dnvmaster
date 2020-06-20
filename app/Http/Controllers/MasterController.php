@@ -61,7 +61,7 @@ class MasterController extends Controller
         return view($this->template)->with($this->vars);
     }
 
-    protected function getMenu()
+    public function getMenu()
     {
         $menu = $this->menus_repository->get();
         $mBuilder = Menu::make('MyNav', function($m) use($menu) {

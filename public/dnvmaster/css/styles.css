@@ -1918,22 +1918,28 @@ blockquote i{
 .block-404 h1{
     font-size: 100px;
     font-weight: 100;
-    color: #fff;
+    color: #000;
 }
 
 .block-404 h2{
     font-size: 30px;
     font-weight: 500;
-    color: #fff;
+    color: #000;
 }
 
 .block-404 h4{
     font-size: 20px;
     font-weight: 500;
-    color: #fff;
+    color: #000;
     margin-top: 10px;
-}   
-
+}
+.block-404 p{
+	font-size: 22px;
+	font-weight: 400;
+	color: #000;
+	margin-top: 15px;
+	font-family: Cursive;
+}
 
 /*-----------------------------------------
 24. Forms

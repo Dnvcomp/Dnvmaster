@@ -39,23 +39,7 @@
     @yield('topBar')
     <!-- Top-Bar END -->
     <!-- Navbar START -->
-    <header>
-        <nav class="navbar navbar-default navbar-custom" data-spy="affix" data-offset-top="50">
-            <div class="container">
-                <div class="row">
-                    <div class="navbar-header navbar-header-custom">
-                        <button type="button" class="navbar-toggle collapsed menu-icon" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-logo" href="{{ url('/') }}"><img src="{{ asset(env('MASTER')) }}/img/logos/logo.png" alt="DnvMaster"></a>
-                    </div>
-                    @yield('navigation')
-                </div>
-            </div>
-        </nav>
-    </header>
+   @yield('navigation')
     <!-- Navbar END -->
     <div class="wrap_result"></div>
     <!-- Slider START -->
