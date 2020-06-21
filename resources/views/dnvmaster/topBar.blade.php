@@ -9,7 +9,7 @@
                 </ul>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 right-holder hidden-sm">
-                <a href="#" class="top-appoinment">Get a Quote</a>
+                <a href="{{ url('/login') }}" class="top-appoinment">{{ trans('ru.input') }}</a>
             </div>
         </div>
     </div>
