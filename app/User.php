@@ -24,7 +24,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function articles() {
+    public function articles()
+    {
         return $this->hasMany('Dnvmaster\Article');
+    }
+    public function roles()
+    {
+        return $this->belongsToMany('Dnvmaster\Role','role_user');
     }
 }
