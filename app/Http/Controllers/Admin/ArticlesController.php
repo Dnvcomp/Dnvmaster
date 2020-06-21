@@ -2,13 +2,25 @@
 
 namespace Dnvmaster\Http\Controllers\Admin;
 
+use Dnvmaster\Repositories\ArticlesRepository;
 use Illuminate\Http\Request;
-
 use Dnvmaster\Http\Requests;
 use Dnvmaster\Http\Controllers\Controller;
+use Gate;
 
-class ArticlesController extends Controller
+class ArticlesController extends AdminController
 {
+    public function __construct(ArticlesRepository $articles_repository)
+    {
+        parent::__construct();
+        if(Gate::denies('VIEW_ADMIN_ARTICLES'))
+        {
+            abort(403);
+        }
+        $this->articles_repository = $articles_repository;
+        $this->template = env('MASTER').'.admin.articles';
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +28,15 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        $this->title = 'Редактирование статей';
+        $articles = $this->getArticles();
+        $this->content = view(env('MASTER').'.admin.articles_content')->with('articles',$articles)->render();
+        return $this->renderOutput();
+    }
+
+    public function getArticles()
+    {
+        return $this->articles_repository->get();
     }
 
     /**
