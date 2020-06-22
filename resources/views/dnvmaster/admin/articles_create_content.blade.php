@@ -1,5 +1,5 @@
 <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3">
-    <div class="detail-heading">
+    <div class="section-heading text-center">
         <h3>Добавление нового материала</h3>
     </div>
     <div class="row">
@@ -78,7 +78,6 @@
                 </div>
             </div>
         </div>
-
         <div class="service-box clearfix">
             @if(isset($article->img->path))
                 <div class="box-content">

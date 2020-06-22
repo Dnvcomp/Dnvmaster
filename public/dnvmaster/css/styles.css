@@ -2493,3 +2493,7 @@ img.comment-avatar {
 	border: 2px solid greenyellow !important;
 	border-radius: 7px;
 }
+.number {
+	color: #18ba60;
+	font-weight: 600;
+}
