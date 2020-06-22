@@ -2,6 +2,8 @@
 
 namespace Dnvmaster\Providers;
 
+use Dnvmaster\Article;
+use Dnvmaster\Policies\ArticlePolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Dnvmaster\Model' => 'Dnvmaster\Policies\ModelPolicy',
+        Article::class => ArticlePolicy::class,
     ];
 
     /**
