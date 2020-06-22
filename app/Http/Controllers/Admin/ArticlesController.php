@@ -5,6 +5,7 @@ namespace Dnvmaster\Http\Controllers\Admin;
 use Dnvmaster\Category;
 use Dnvmaster\Repositories\ArticlesRepository;
 use Illuminate\Http\Request;
+use Dnvmaster\Http\Requests\ArticleRequest;
 use Dnvmaster\Http\Requests;
 use Dnvmaster\Http\Controllers\Controller;
 use Gate;
@@ -70,9 +71,13 @@ class ArticlesController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $result = $this->articles_repository->addArticle($request);
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     /**
