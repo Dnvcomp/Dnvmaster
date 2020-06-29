@@ -100,7 +100,6 @@ class ArticlesController extends AdminController
      */
     public function edit(Article $article)
     {
-        //$article = Article::where('alias', $alias);
         if(Gate::denies('edit', new Article)) {
             abort(403);
         }
@@ -128,9 +127,13 @@ class ArticlesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
-        //
+        $result = $this->articles_repository->updateArticle($request, $article);
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     /**
