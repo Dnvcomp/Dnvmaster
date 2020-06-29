@@ -48,7 +48,7 @@
                 </div>
                 <div class="box-content">
                     <h5>Мета описание</h5>
-                    {!! Form::text('meta_desc', isset($article->meta_desc) ? $article->meta_desc  : old('meta_desc'), ['placeholder'=>'Введите мета описание для страницы']) !!}
+                    {!! Form::text('description', isset($article->description) ? $article->description  : old('description'), ['placeholder'=>'Введите мета описание для страницы']) !!}
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
             @if(isset($article->img->path))
                 <div class="box-content">
                     <h5>Изображение материала:</h5>
-                    {{ Html::image(asset(env('THEME')).'/images/articles/'.$article->img->path,'',['style'=>'width:400px']) }}
+                    {{ Html::image(asset(env('MASTER')).'/img/articles/'.$article->img->path,'',['style'=>'width:400px']) }}
                     {!! Form::hidden('old_image',$article->img->path) !!}
                 </div>
             @endif

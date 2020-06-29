@@ -3,6 +3,7 @@
 namespace Dnvmaster\Http\Controllers\Admin;
 
 use Dnvmaster\Category;
+use Dnvmaster\Article;
 use Dnvmaster\Repositories\ArticlesRepository;
 use Illuminate\Http\Request;
 use Dnvmaster\Http\Requests\ArticleRequest;
@@ -97,9 +98,27 @@ class ArticlesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        //$article = Article::where('alias', $alias);
+        if(Gate::denies('edit', new Article)) {
+            abort(403);
+        }
+        $article->img = json_decode($article->img);
+
+        $categories = Category::select(['title','alias','parent_id','id'])->get();
+        $lists = array();
+        foreach($categories as $category) {
+            if($category->parent_id == 0) {
+                $lists[$category->title] = array();
+            } else {
+                $lists[$categories->where('id',$category->parent_id)->first()->title][$category->id] = $category->title;
+            }
+        }
+        $this->title = 'Редактирование материала - '. $article->title;
+
+        $this->content = view(env('MASTER').'.admin.articles_create_content')->with(['categories'=>$lists,'article'=>$article])->render();
+        return $this->renderOutput();
     }
 
     /**
