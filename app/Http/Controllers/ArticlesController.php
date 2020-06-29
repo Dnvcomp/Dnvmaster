@@ -72,10 +72,11 @@ class ArticlesController extends MasterController
             $article->img = json_decode($article->img);
         }
 
-        $this->title = $article->title;
-        $this->keywords = $article->keywords;
-        $this->description = $article->description;
-
+        if(isset($article->id)) {
+            $this->title = $article->title;
+            $this->keywords = $article->keywords;
+            $this->description = $article->description;
+        }
         $content = view(env('MASTER').'.article_content')->with('article',$article)->render();
         $this->vars = array_add($this->vars,'content',$content);
         $comments = $this->getComments(config('settings.recent_comments'));
