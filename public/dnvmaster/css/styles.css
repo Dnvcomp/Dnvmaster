@@ -1945,14 +1945,14 @@ blockquote i{
 24. Forms
 -------------------------------------------*/
 .primary-form input,.primary-form textarea{
-    color: #424040;
-    font-size: 14px;
+    color: #3b526b;
+    font-size: 17px;
     font-weight: 500;   
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #18ba60;
     width: 100%;
-    margin-top: 30px; 
-    padding: 12px 15px 12px 15px;
+    margin-top: 10px;
+    padding: 12px;
     -webkit-transition-duration: .3s;
     transition-duration: .3s;       
 }
@@ -2496,4 +2496,9 @@ img.comment-avatar {
 .number {
 	color: #18ba60;
 	font-weight: 600;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+	padding-top: 5px;
+	border-top: 1px solid #18ba60;
 }
