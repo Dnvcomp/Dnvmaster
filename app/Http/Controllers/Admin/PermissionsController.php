@@ -67,7 +67,11 @@ class PermissionsController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        $result = $this->permissionsRepository->changePermissions($request);
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return back()->with($result);
     }
 
     /**
