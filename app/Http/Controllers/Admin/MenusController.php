@@ -219,9 +219,13 @@ class MenusController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, \Dnvmaster\Menu $menu)
     {
-        //
+        $result = $this->menus_repository->updateMenu($request, $menu);
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     /**
@@ -230,8 +234,12 @@ class MenusController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\Dnvmaster\Menu $menu)
     {
-        //
+        $result = $this->menus_repository->deleteMenu($menu);
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 }
