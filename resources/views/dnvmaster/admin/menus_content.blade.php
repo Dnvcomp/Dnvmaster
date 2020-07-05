@@ -16,5 +16,5 @@
             @endif
         </table>
     </div>
-    {!! HTML::link(route('admin.menus.create'),'Добавить  пункт',['class' => 'btn btn-success']) !!}
+    {!! HTML::link(route('admin.menus.create'),'Добавить  пункт',['class' => 'button button-primary mt-20']) !!}
 </div>

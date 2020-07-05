@@ -14,6 +14,8 @@
         <link rel="stylesheet" type="text/css" href="{{ asset(env('MASTER')) }}/css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900&amp;subset=latin-ext,vietnamese" rel="stylesheet">
         <script src="{{ asset(env('MASTER')) }}/js/ckeditor/ckeditor.js"></script>
+        <script src="{{ asset(env('MASTER')) }}/css/jquery-ui.css"></script>
+        <script src="{{ asset(env('MASTER')) }}/js/jquery-ui.js"></script>
     </head>
     <body>
         @yield('topBar')

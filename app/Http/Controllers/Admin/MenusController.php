@@ -8,6 +8,7 @@ use Dnvmaster\Repositories\MenusRepository;
 use Dnvmaster\Repositories\PortfoliosRepository;
 use Illuminate\Http\Request;
 use Dnvmaster\Http\Requests;
+use Dnvmaster\Http\Requests\MenusRequest;
 use Dnvmaster\Http\Controllers\Controller;
 use Gate;
 
@@ -63,14 +64,14 @@ class MenusController extends AdminController
      */
     public function create()
     {
+        # New user link
         $this->title = "Новый пункт меню";
         $temp = $this->getMenus()->roots();
-
         $menus = $temp->reduce(function($returnMenus, $menu) {
             $returnMenus[$menu->id] = $menu->title;
             return $returnMenus;
         },['0' => 'Родительский пункт меню']);
-
+        # Category
         $categories = \Dnvmaster\Category::select(['title','alias','parent_id','id'])->get();
         $list = array();
         $list = array_add($list,'0','Не используется');
@@ -82,23 +83,23 @@ class MenusController extends AdminController
                 $list[$categories->where('id',$category->parent_id)->first()->title][$category->alias] = $category->title;
             }
         }
-
+        # Articles
         $articles = $this->articles_repository->get(['id','title','alias']);
         $articles = $articles->reduce(function($returnArticles, $article) {
             $returnArticles[$article->alias] = $article->title;
             return $returnArticles;
         }, []);
-
+        # Filters
         $filters = \Dnvmaster\Filter::select('id','title','alias')->get()->reduce(function ($returnFilters, $filter) {
             $returnFilters[$filter->alias] = $filter->title;
             return $returnFilters;
-        }, ['parent' => 'Раздел портфолио']);
-
+        }, ['parent' => 'Раздел авторы']);
+        # Portfolio
         $portfolios = $this->portfolios_repository->get(['id','alias','title'])->reduce(function ($returnPortfolios, $portfolio) {
             $returnPortfolios[$portfolio->alias] = $portfolio->title;
             return $returnPortfolios;
         }, []);
-
+        # Input display
         $this->content = view(env('MASTER').'.admin.menus_create_content')->with(['menus'=>$menus,'categories'=>$list,'articles'=>$articles,'filters' => $filters,'portfolios' => $portfolios])->render();
         return $this->renderOutput();
 
@@ -110,9 +111,13 @@ class MenusController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MenusRequest $request)
     {
-        //
+        $result = $this->menus_repository->addMenu($request);
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        return redirect('/admin')->with($result);
     }
 
     /**

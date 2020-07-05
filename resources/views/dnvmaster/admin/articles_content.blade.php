@@ -39,7 +39,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! Html::link(route('admin.articles.create'),'Добавить  материал',['class' => 'btn btn-success']) !!}
+            {!! Html::link(route('admin.articles.create'),'Добавить  материал',['class' => 'button button-primary']) !!}
         </div>
     </div>
 @endif

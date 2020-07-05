@@ -2502,3 +2502,12 @@ img.comment-avatar {
 	padding-top: 5px;
 	border-top: 1px solid #18ba60;
 }
+
+.display-none {
+	list-style: none;
+}
+
+.BigLabel {
+	font-size: 20px;
+	color: #3b526b;
+}
